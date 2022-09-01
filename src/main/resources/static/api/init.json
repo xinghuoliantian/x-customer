@@ -1,0 +1,124 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "/welcome"
+  },
+  "logoInfo": {
+    "title": "安监系统",
+    "image": "images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "目录",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "设备管理",
+          "href": "",
+          "icon": "fa fa-user",
+          "target": "_self",
+          "child": [
+            {
+              "title": "设备基本信息",
+              "href": "equ",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+
+          ]
+        },
+        {
+          "title": "视频信息",
+          "href": "",
+          "icon": "fa fa-window-maximize",
+          "target": "_self",
+		  "child": [
+
+		    {
+		      "title": "实时视频",
+		      "href": "quanx",
+		      "icon": "fa fa-tachometer",
+		      "target": "_self"
+		    }
+
+		  ]
+        },
+        {
+          "title": "定位轨迹",
+          "href": "",
+          "icon": "fa fa-window-maximize",
+          "target": "_self",
+          "child": [
+
+            {
+              "title": "设备定位",
+              "href": "dataan",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            },
+            {
+              "title": "设备轨迹",
+              "href": "dataan2",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+
+          ]
+        },
+        {
+          "title": "实时数据",
+          "href": "",
+          "icon": "fa fa-window-maximize",
+          "target": "_self",
+          "child": [
+
+            {
+              "title": "实时数据",
+              "href": "equmap",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+
+          ]
+        },
+        {
+          "title": "保养信息",
+          "href": "",
+          "icon": "fa fa-window-maximize",
+          "target": "_self",
+          "child": [
+
+            {
+              "title": "保养信息",
+              "href": "equmap",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+
+          ]
+        },
+        {
+          "title": "油耗查询",
+          "href": "",
+          "icon": "fa fa-window-maximize",
+          "target": "_self",
+          "child": [
+
+            {
+              "title": "油耗查询",
+              "href": "equmap",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
+            }
+
+          ]
+        }
+      ]
+    }
+
+
+  ]
+}
