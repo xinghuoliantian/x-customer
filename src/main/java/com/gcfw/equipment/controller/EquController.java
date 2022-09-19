@@ -25,7 +25,7 @@ public class EquController {
         return "equ/equList";
     }
     //返回查询数据
-    //  localhost:8081/equ/list?page=1&limit=10
+    //  localhost:8082/equ/list?page=1&limit=10
     @GetMapping("/list")
     @ResponseBody
     public Result<Object> getEquList(EquQuery param){
