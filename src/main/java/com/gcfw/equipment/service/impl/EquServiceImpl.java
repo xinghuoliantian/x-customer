@@ -32,8 +32,8 @@ public class EquServiceImpl implements EquService {
     }
 
     @Override
-    public List<Equ> getAllEqud() {
-        return equMapper.getAllEqud();
+    public List<Equ> getAllEqud(Object param) {
+        return equMapper.getAllEqud(param);
     }
 
 

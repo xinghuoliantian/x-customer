@@ -5,12 +5,8 @@
     <!-- id：返回的是所有对象的Map集合，type：每个对象是User类 -->
     <select id="getEquList" parameterType="com.gcfw.equipment.vo.EquQuery"  resultType="com.gcfw.equipment.entity.Equ">
         select * from equipment_info
+        where deviceID=#{deviceID}
 
-         <where>
-             <if test="deviceID != null">
-                 deviceID like '%' #{deviceID} '%'
-             </if>
-         </where>
         limit #{start},#{limit}
     </select>
     <select id="countEquList" parameterType="com.gcfw.equipment.vo.EquQuery"  resultType="Long">
@@ -23,9 +19,10 @@
         where id = #{id};
     </select>
     <select id="getAllEqud"  parameterType="com.gcfw.equipment.entity.Equ"   resultType="com.gcfw.equipment.entity.Equ">
-        select deviceID  from equipment_info
+--         select deviceID  from equipment_info
+        <!-- 测试sql -->
+         select  deviceID from   sys_userdevice ud ,user  u where u.id=ud.USERID and u.username=#{username};
+            </select>
 
-    </select>
-
-</mapper>
+        </mapper>
 

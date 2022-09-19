@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -21,9 +23,11 @@ public class EquController {
 
     //返回查询页面
     @GetMapping("")
-    public String toEquListUI(Model model)
+    public String toEquListUI(HttpServletRequest request, Model model)
     {
-        List<Equ> EqudList =equService.getAllEqud();
+
+        Object object=request.getSession().getAttribute("userInfo");
+        List<Equ> EqudList =equService.getAllEqud(object);
         model.addAttribute("EqudList",EqudList);
         return "equ/equList";
     }
