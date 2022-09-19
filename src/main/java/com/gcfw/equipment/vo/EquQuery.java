@@ -1,6 +1,7 @@
 package com.gcfw.equipment.vo;
 
-import com.fwzg.common.vo.Page;
+
+import com.gcfw.common.vo.Page;
 import lombok.Data;
 
 @Data
