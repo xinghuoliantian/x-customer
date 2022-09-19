@@ -13,4 +13,5 @@ public interface EquService {
 
     Equ getEquById(Integer id);
 
+    List<Equ> getAllEqud();
 }

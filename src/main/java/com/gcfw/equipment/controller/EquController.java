@@ -8,6 +8,7 @@ import com.gcfw.equipment.service.EquService;
 import com.gcfw.equipment.vo.EquQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,8 +21,10 @@ public class EquController {
 
     //返回查询页面
     @GetMapping("")
-    public String toEquListUI()
+    public String toEquListUI(Model model)
     {
+        List<Equ> EqudList =equService.getAllEqud();
+        model.addAttribute("EqudList",EqudList);
         return "equ/equList";
     }
     //返回查询数据

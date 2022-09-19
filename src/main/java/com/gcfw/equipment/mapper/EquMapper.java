@@ -12,4 +12,5 @@ public interface EquMapper {
     Equ getEquById(Integer id);
 
 
+    List<Equ> getAllEqud();
 }
