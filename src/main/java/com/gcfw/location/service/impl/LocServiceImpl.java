@@ -1,6 +1,7 @@
 package com.gcfw.location.service.impl;
 
 import com.gcfw.equipment.entity.Equ;
+import com.gcfw.equipment.vo.EquQuery;
 import com.gcfw.location.mapper.LocMapper;
 import com.gcfw.location.service.LocService;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,15 @@ public class LocServiceImpl implements LocService {
     @Override
     public List<Equ> getEquByUser(Object param) {
         return locMapper.getEquByUser(param);
+    }
+
+    @Override
+    public List<Equ> getGpsList(EquQuery param) {
+        return locMapper.getGpsList(param);
+    }
+
+    @Override
+    public Long countGpsList(EquQuery param) {
+        return locMapper.countGpsList(param);
     }
 }

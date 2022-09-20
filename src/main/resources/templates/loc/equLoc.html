@@ -29,7 +29,7 @@
                             <div class="layui-input-inline">
                                 <select name="sort" lay-verify="required">
                                     <option value=""></option>
-                                    <option th:each="equn:${EqudList1}" th:value="${equn.deviceID}">
+                                    <option th:each="equn:${EqudList}" th:value="${equn.deviceID}">
                                         <span th:text="${equn.deviceID}"></span>
                                     </option>
                                 </select>
