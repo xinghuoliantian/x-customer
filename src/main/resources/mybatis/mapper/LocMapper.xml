@@ -8,12 +8,12 @@
         <!-- 测试sql -->
         select  deviceID from   sys_userdevice ud ,user  u where u.id=ud.USERID and u.username=#{username};
     </select>
-    <select id="getGpsList" parameterType="com.gcfw.equipment.vo.EquQuery"  resultType="com.gcfw.equipment.entity.Equ">
+    <select id="getGpsList" parameterType="com.gcfw.location.vo.GpsQuery"  resultType="com.gcfw.location.entity.Loc">
         SELECT  real_gps.id,real_gps.jd,real_gps.wd,real_gps.chex FROM  real_gps
         where devicecode=#{devicecode}
         limit #{start},#{limit}
     </select>
     <select id="countGpsList" parameterType="com.gcfw.equipment.vo.EquQuery"  resultType="Long">
-        select count(*) from real_gps   where devicecode=#{devicecode}
+        select count(1) from real_gps   where devicecode=#{devicecode}
     </select>
 </mapper>
