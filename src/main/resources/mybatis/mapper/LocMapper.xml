@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcfw.location.mapper.LocMapper">
+    <!-- id：返回的是所有对象的Map集合，type：每个对象是User类 -->
+
+    <select id="getEquByUser"  parameterType="com.gcfw.equipment.entity.Equ"   resultType="com.gcfw.equipment.entity.Equ">
+
+        <!-- 测试sql -->
+        select  deviceID from   sys_userdevice ud ,user  u where u.id=ud.USERID and u.username=#{username};
+    </select>
+
+</mapper>

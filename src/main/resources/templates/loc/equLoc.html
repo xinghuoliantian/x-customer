@@ -1,21 +1,111 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>设备定位</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+    <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
     <link rel="stylesheet" th:href="@{/css/public.css}" media="all">
+    <title>设备定位</title>
+    <style type="text/css">
+        #container{
+            margin: 0 auto;
+            height: 600px;
+            width: 1000px;
+
+        }
+    </style>
 </head>
+<script  th:src="@{/webjars/jQuery/dist/jquery.min.js}" charset="utf-8"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=nSxiPohfziUaCuONe4ViUP2N"></script>
 <body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">设备编号</label>
+                            <div class="layui-input-inline">
+                                <select name="sort" lay-verify="required">
+                                    <option value=""></option>
+                                    <option th:each="equn:${EqudList1}" th:value="${equn.deviceID}">
+                                        <span th:text="${equn.deviceID}"></span>
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
 
-<p align="center">设备定位</p>
-
+                        <div class="layui-inline">
+                            <button id="btn-search" type="submit" class="layui-btn layui-btn-radius layui-btn-normal"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                            <button id="btn-rst" type="reset" class="layui-btn layui-btn-radius layui-btn-normal"  ><i class="layui-icon layui-icon-return"></i> 重 置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+        <div id="down" >
+            <!--百度地图容器-->
+            <div  id="container"></div>
+        </div>
+    </div>
+</div>
 <script  th:src="@{/webjars/jQuery/dist/jquery.min.js}" charset="utf-8"></script>
 <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<script  type="text/javascript">
+    // $(function(){
+    //     $.ajax({
+    //         type: 'get',
+    //         dataType:'json',
+    //         url: "equmap/list",
+    //         success: function(res){
+    //             //console.log(res);
+    //             mapInfo(res);
+    //         },
+    //         error:function(err){
+    //             console.log(err);
+    //         }
+    //     })
+    // })
 
+    function mapInfo(mappoint) {
+        //创建地图实例
+        var map = new BMap.Map("container");
+        //设置中心点
+        var point = new BMap.Point(116.404, 39.915);
+        //
+        map.centerAndZoom(point,6)
+        //地图滚轮
+        map.enableScrollWheelZoom(true);
+        //alert(mappoint.data.length);
+        for(var i=0;i<mappoint.data.length;i++)
+        {
+            (function (i) {
+                var point1=new BMap.Point(mappoint.data[i].jd, mappoint.data[i].wd);
+                //alert(mappoint.data[i].jd);
+                //console.log(mappoint.data[i].chex);
+                var marker = new BMap.Marker(point1);        // 创建标注
+                map.addOverlay(marker);                     // 将标注添加到地图中
+
+                var opts = {
+                    width : 250,     // 信息窗口宽度
+                    height: 100,     // 信息窗口高度
+                    title : mappoint.data[i].chex
+                }
+                //var content='<div>'+mappoint.data[i].chex +'</div>'
+                var infoWindow = new BMap.InfoWindow("", opts);  // 创建信息窗口对象
+
+                marker.addEventListener("click", function(){
+
+                        map.openInfoWindow(infoWindow, point1);      // 打开信息窗口
+                    }
+                );
+            })(i)
+
+        }
+
+    }
+    mapInfo();
+</script>
 </body>
 </html>
