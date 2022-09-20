@@ -10,7 +10,7 @@
         limit #{start},#{limit}
     </select>
     <select id="countEquList" parameterType="com.gcfw.equipment.vo.EquQuery"  resultType="Long">
-        select count(1) from equipment_info
+        select count(1) from equipment_info where deviceID=#{deviceID}
     </select>
 
     <select id="getEquById" parameterType="integer" resultType="com.gcfw.equipment.entity.Equ">
