@@ -24,8 +24,8 @@
                             <div class="layui-input-inline">
                                 <select name="sort" lay-verify="required">
                                     <option value=""></option>
-                                    <option th:each="equn:${EqudList}" th:value="${equn.deviceID}">
-                                        <span th:text="${equn.deviceID}"></span>
+                                    <option th:each="equn:${EqudList}" th:value="${equn.devicecode}">
+                                        <span th:text="${equn.CARCODE}"></span>
                                     </option>
                                 </select>
                             </div>

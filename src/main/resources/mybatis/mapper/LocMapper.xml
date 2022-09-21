@@ -6,11 +6,11 @@
     <select id="getEquByUser"  parameterType="com.gcfw.equipment.entity.Equ"   resultType="com.gcfw.equipment.entity.Equ">
 
         <!-- 测试sql -->
-        select  deviceID from   sys_userdevice ud ,user  u where u.id=ud.USERID and u.username=#{username};
+        select  DEVICECODE, CARCODE  from   sys_userdevice ud ,user  u where u.id=ud.USERID and u.username=#{username};
     </select>
     <select id="getGpsList" parameterType="com.gcfw.location.vo.GpsQuery"  resultType="com.gcfw.location.entity.Loc">
-        SELECT  real_gps.id,real_gps.jd,real_gps.wd,real_gps.chex FROM  real_gps
-        where devicecode=#{devicecode}
+        SELECT  real_gps.id,real_gps.jd,real_gps.wd,real_gps.chex FROM  real_gps  ,sys_userdevice  where real_gps.devicecode=sys_userdevice.GPSCODE
+        and sys_userdevice.DEVICECODE=#{devicecode}
         limit #{start},#{limit}
     </select>
     <select id="countGpsList" parameterType="com.gcfw.equipment.vo.EquQuery"  resultType="Long">

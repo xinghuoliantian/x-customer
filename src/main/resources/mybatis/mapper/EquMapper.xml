@@ -21,7 +21,7 @@
     <select id="getAllEqud"  parameterType="com.gcfw.equipment.entity.Equ"   resultType="com.gcfw.equipment.entity.Equ">
 --         select deviceID  from equipment_info
         <!-- 测试sql -->
-         select  deviceID from   sys_userdevice ud ,user  u where u.id=ud.USERID and u.username=#{username};
+         select  DEVICECODE, CARCODE   from   sys_userdevice ud ,user  u where u.id=ud.USERID and u.username=#{username};
             </select>
 
         </mapper>

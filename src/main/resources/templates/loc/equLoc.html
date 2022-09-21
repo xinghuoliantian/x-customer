@@ -29,8 +29,8 @@
                             <div class="layui-input-inline">
                                 <select name="sort" lay-verify="required">
                                     <option value=""></option>
-                                    <option th:each="equn:${EqudList}" th:value="${equn.deviceID}">
-                                        <span th:text="${equn.deviceID}"></span>
+                                    <option th:each="equn:${EqudList}" th:value="${equn.devicecode}">
+                                        <span th:text="${equn.CARCODE}"></span>
                                     </option>
                                 </select>
                             </div>
@@ -52,22 +52,40 @@
 </div>
 <script  th:src="@{/webjars/jQuery/dist/jquery.min.js}" charset="utf-8"></script>
 <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
-<script  type="text/javascript">
-    // $(function(){
-    //     $.ajax({
-    //         type: 'get',
-    //         dataType:'json',
-    //         url: "equmap/list",
-    //         success: function(res){
-    //             //console.log(res);
-    //             mapInfo(res);
-    //         },
-    //         error:function(err){
-    //             console.log(err);
-    //         }
-    //     })
-    // })
+<script th:inline="javascript">
+    var ctxPath=[[@{/}]];
+    layui.use(['form', 'table'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
 
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function (data) {
+
+            var result = JSON.stringify(data.field.sort);
+            var result_url = ctxPath+"sbdw/list?devicecode="+result+"&page=1&limit=10";
+            result_url=result_url.replace(/\"/g, "");
+            //刷新重载
+            //console.log(result)
+            //console.log(result_url)
+            $(function(){
+                $.ajax({
+                    type: 'get',
+                    dataType:'json',
+                    url: result_url,
+                    success: function(res){
+                        //console.log(res);
+                        mapInfo(res);
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                })
+            })
+            return false;
+        });
+
+    });
     function mapInfo(mappoint) {
         //创建地图实例
         var map = new BMap.Map("container");
@@ -78,6 +96,9 @@
         //地图滚轮
         map.enableScrollWheelZoom(true);
         //alert(mappoint.data.length);
+
+        //console.log(mappoint.data[0].jd);
+
         for(var i=0;i<mappoint.data.length;i++)
         {
             (function (i) {
@@ -86,6 +107,12 @@
                 //console.log(mappoint.data[i].chex);
                 var marker = new BMap.Marker(point1);        // 创建标注
                 map.addOverlay(marker);                     // 将标注添加到地图中
+
+
+                //设置新中心点
+                var point1 = new BMap.Point(mappoint.data[i].jd, mappoint.data[i].wd);
+                //
+                map.centerAndZoom(point1,15)
 
                 var opts = {
                     width : 250,     // 信息窗口宽度
@@ -105,7 +132,8 @@
         }
 
     }
-    mapInfo();
+    //mapInfo();
+
 </script>
 </body>
 </html>

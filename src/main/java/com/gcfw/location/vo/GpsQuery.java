@@ -6,4 +6,5 @@ import lombok.Data;
 @Data
 public class GpsQuery extends Page {
     private String devicecode;
+    private String CARCODE;
 }

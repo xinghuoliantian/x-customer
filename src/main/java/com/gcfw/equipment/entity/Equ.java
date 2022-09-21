@@ -17,6 +17,7 @@ public class Equ implements Serializable {
     private String equ_videoid;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date productiondate;
-
+    private String devicecode;    //同 devicecode
+    private String  CARCODE;   //表 sys_userdevice 字段
 
 }
